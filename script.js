@@ -25,12 +25,8 @@ function Chamar(iniNum, finalNum,totalNum, jogo){
     } else if (jogo==5){
         jogo2 = "/img/botao-lotomania.png"
     } else if (jogo==6){
-        jogo2 = "/img/botao-lotogol.png"
-    } else if (jogo==7){
-        jogo2 = "/img/botao-loteca.png"
-    } else if (jogo==8){
         jogo2 = "/img/botao-supersete.png"
-    } else if (jogo==9){
+    } else if (jogo==7){
         jogo2 = "/img/botao-duplasena.png"
     }  
     
@@ -39,8 +35,6 @@ function Chamar(iniNum, finalNum,totalNum, jogo){
 
     divjogo.innerHTML = codigo
 }
-
-
 
 function Sorteio(totalSorteio,temMes){
     qntNum = document.getElementById('qntNum').value;
