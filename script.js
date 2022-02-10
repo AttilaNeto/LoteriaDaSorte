@@ -1,46 +1,59 @@
 
 
 
-function ChamarMegaSena(){
+function Chamar(iniNum, finalNum,totalNum, jogo){
     divjogo = document.getElementById('jogo')
+
+    opcao = ''
+    for (let i = iniNum; i <= finalNum; i++) {
+        
+        opcao = opcao + "<option value="+i+">"+i+"</option>"
+    }
+
+    mes = false
+
+    jogo2 = ''
+    if (jogo==1) {
+        jogo2 = "/img/botao-mega-sena.png"
+    } else if (jogo==2){
+        jogo2 = "/img/botao-lotofacil.png"
+    } else if (jogo==3){
+        jogo2 = "/img/botao-quina.png"
+    } else if (jogo==4){
+        jogo2 = "/img/botao-diadesorte.png"
+        mes = true
+    } else if (jogo==5){
+        jogo2 = "/img/botao-lotomania.png"
+    } else if (jogo==6){
+        jogo2 = "/img/botao-lotogol.png"
+    } else if (jogo==7){
+        jogo2 = "/img/botao-loteca.png"
+    } else if (jogo==8){
+        jogo2 = "/img/botao-supersete.png"
+    } else if (jogo==9){
+        jogo2 = "/img/botao-duplasena.png"
+    }  
     
-    codigo = "<img class='logoimg' src='/img/botao-mega-sena.png'><br><label>Quantidade de Numeros Sorteados: </label><select id='qntNum'><option selected value=6>6</option><option value=7>7</option><option value=8>8</option><option value=9>9</option><option value=10>10</option><option value=11>11</option><option value=12>12</option><option value=13>13</option><option value=14>14</option><option value=15>15</option></select><label>Total de Jogos Sorteados: </label><input id='qntJogos' type='number' value=1><br><br><button onclick='Sorteio(60)'>Sortear!</button>"
-
-    divjogo.innerHTML = codigo
-}
-
-function ChamarLotofacil(){
-    divjogo = document.getElementById('jogo')
-
-    codigo = "<img class='logoimg' src='/img/botao-lotofacil.png'><br><label>Quantidade de Numeros Sorteados: </label><select id='qntNum'><option value=15>15</option><option value=16>16</option><option value=17>17</option><option value=18>18</option><option value=19>19</option><option value=20>20</option></select><label>Quantidade de Jogos: </label><input id='qntJogos' type='number' value=1><br><br><button onclick='Sorteio(25)'>Sortear!</button>"
-
-    divjogo.innerHTML = codigo
-}
-
-function ChamarQuina(){
-
-    divjogo = document.getElementById('jogo')
-
-    codigo = "<img class='logoimg' src='/img/botao-quina.png'><br><label>Quantidade de Numeros Sorteados: </label><select id='qntNum'><option selected value=5>5</option><option value=6>6</option><option value=7>7</option><option value=8>8</option><option value=9>9</option><option value=10>10</option><option value=11>11</option><option value=12>12</option><option value=13>13</option><option value=14>14</option><option value=15>15</option></select><label>Total de Jogos Sorteados: </label><input id='qntJogos' type='number' value=1><br><br><button onclick='Sorteio(80)'>Sortear!</button>"
+    
+    codigo = "<img class='logoimg' src='"+jogo2+"'><br><label>Quantidade de Numeros Sorteados: </label><select id='qntNum'>"+opcao+"</select><label>Total de Jogos Sorteados: </label><input id='qntJogos' type='number' value=1><br><br><button onclick='Sorteio("+totalNum+","+mes+")'>Sortear!</button>"
 
     divjogo.innerHTML = codigo
 }
 
 
 
-
-function Sorteio(totalSorteio){
+function Sorteio(totalSorteio,temMes){
     qntNum = document.getElementById('qntNum').value;
     qntJogos = document.getElementById('qntJogos').value;
            
-    SortearNumeros(qntJogos, qntNum, totalSorteio)
+    SortearNumeros(qntJogos, qntNum, totalSorteio,temMes)
 }
 
 function ChecarNumero(a,b){
     return (a - b)
 }
 
-function SortearNumeros(qntJogos, qntNum, numSort){
+function SortearNumeros(qntJogos, qntNum, numSort, temMes){
 
     resultado = document.getElementById('resultado')
 
@@ -55,7 +68,7 @@ function SortearNumeros(qntJogos, qntNum, numSort){
         for (let i = 1; i <= qntNum; i++) {              
 
             while (numerosSorteados.length < qntNum){
-                var numero = numeroSorteado = Math.floor(Math.random()*(numSort+1)+1)
+                var numero = numeroSorteado = Math.floor(Math.random()*(numSort)+1)
                 numero = ("00" + numero).slice(-2)
                 if (numerosSorteados.indexOf(numero) == -1){
                     numerosSorteados.push(numero)
@@ -74,6 +87,11 @@ function SortearNumeros(qntJogos, qntNum, numSort){
                 }
                  
             }
+
+            if (temMes==true){
+                mes = SortearMes()
+                jogo = jogo + " - Mês: "+mes
+            }
         }
         jogosSorteados.push(jogo)
     }
@@ -86,4 +104,38 @@ function SortearNumeros(qntJogos, qntNum, numSort){
     }
     
     resultado.innerHTML = codigo
+}
+
+function SortearMes(){
+    var numero = numeroSorteado = Math.floor(Math.random()*(12)+1)
+
+    console.log(numero)
+
+    switch (numero){
+
+        case 1:
+            return 'Janeiro'
+        case 2:
+            return 'Fevereiro'
+        case 3:
+            return 'Marco'
+        case 4:
+            return 'Abril'
+        case 5:
+            return 'Maio'
+        case 6:
+            return 'Junho'
+        case 7:
+            return 'Julho'
+        case 8:
+            return 'Agosto'
+        case 9:
+            return 'Setembro'
+        case 10:
+            return 'Outubro'
+        case 11:
+            return 'Novembro'
+        case 12:
+            return 'Dezembro'
+    }
 }
