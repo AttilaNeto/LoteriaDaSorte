@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/style.css">
+    <script type="text/javascript" src="/script.js"></script>
+    <title>LoteriaDaSorte</title>
+</head>
+
+<body>
+    <center>
+        <div>
+            TEXTO
+        </div>
+        <div id='botoes'>
+            <h2>Escolha o seu Jogo</h2>
+            <a href="#"><img src="/img/botao-mega-sena.png"></a>
+            <!-- <a href="#"><img src="/img/botao-lotofacil.png"></a> -->
+            <!-- <a href="#"><img src="/img/botao-quina.png"></a> -->
+            <!-- <a href="#"><img src="/img/botao-diadesorte.png"></a> -->
+            <!-- <a href="#"><img src="/img/botao-lotomania.png"></a> -->
+            <!-- <a href="#"><img src="/img/botao-lotogol.png"></a> -->
+            <!-- <a href="#"><img src="/img/botao-loteca.png"></a> -->
+            <!-- <a href="#"><img src="/img/botao-supersete.png"></a> -->
+            <!-- <a href="#"><img src="/img/botao-duplasena.png"></a> -->
+        </div>
+        <div id="jogo">
+            <h1>GERADOR</h1>
+            <h2>NOMEDOJOGO</h2>
+            <label>Quantidade de Numeros Sorteados: </label>
+            <select id="qntNum">
+                <option selected value=6>6</option>
+                <option value=7>7</option>
+                <option value=8>8</option>
+                <option value=9>9</option>
+                <option value=10>10</option>
+                <option value=11>11</option>
+                <option value=12>12</option>
+                <option value=13>13</option>
+                <option value=14>14</option>
+                <option value=15>15</option>
+            </select>
+            <label>Total de Jogos Sorteados: </label>
+            <input id='qntJogos' type="number" value=1>
+            <br>
+            <br>
+            <button onclick="SorteioMegasena()">Sortear!</button>
+        </div>
+
+        <div id="resultado">
+        </div>
+        <footer>
+    
+        </footer>
+        
+
+    </center>
+    
+</body>
+</html>
