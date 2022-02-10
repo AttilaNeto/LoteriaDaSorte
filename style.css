@@ -4,7 +4,7 @@ body{
     justify-content: center;
 }
 
-#botoes a img{
+.logoimg{
     width: 19vw;
     height: auto;
 }
