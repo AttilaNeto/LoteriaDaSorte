@@ -1,7 +1,9 @@
 
 
-
+//CHAMA A TELA DO JOGO
 function Chamar(iniNum, finalNum,totalNum, jogo){
+    LimparResultado();
+
     divjogo = document.getElementById('jogo')
 
     opcao = ''
@@ -36,11 +38,13 @@ function Chamar(iniNum, finalNum,totalNum, jogo){
     divjogo.innerHTML = codigo
 }
 
+//PEGA A QUANTIDADE DE NUMEROS A SEREM SORTEADOS E A QUANTIDADE DE JOGOS
 function Sorteio(totalSorteio,temMes){
     qntNum = document.getElementById('qntNum').value;
     qntJogos = document.getElementById('qntJogos').value;
-           
+    
     SortearNumeros(qntJogos, qntNum, totalSorteio,temMes)
+    AparecerResultado()
 }
 
 function ChecarNumero(a,b){
@@ -132,4 +136,16 @@ function SortearMes(){
         case 12:
             return 'Dezembro'
     }
+}
+
+function AparecerResultado(){
+    let result = document.getElementById('resultado');
+    result.classList.remove('resultado1');
+    result.classList.add('resultado');
+}
+
+function LimparResultado(){
+    let result = document.getElementById('resultado');
+    result.classList.remove('resultado')
+    result.classList.add('resultado1')
 }
