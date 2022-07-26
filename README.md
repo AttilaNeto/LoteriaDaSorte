@@ -1,18 +1,13 @@
-<html>
-<head>
-  <title> ### LOTERIA DA SORTE ###</title>
-</head>
-<body>
-  Criação de um site para gerar seus numeros nos jogos da Loteria Caixa. 
+**LOTERIA DA SORTE**
+Criação de um site para gerar seus numeros nos jogos da Loteria Caixa. 
 
-  [x] - Mega-Sena
-  [x] - Lotofacil
-  [x] - Quina
-  [x] - Dia de Sorte
+  [`#0969DA`] - Mega-Sena
+  [`#0969DA`] - Lotofacil
+  [`#0969DA`] - Quina
+  [`#0969DA`] - Dia de Sorte
   [] - Lotomania
   [] - Lotogol
   [] - Loteca
   [] - Super Sete
   [] - Dupla Sena
-</body>
-</html>
+
