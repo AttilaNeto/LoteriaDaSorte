@@ -16,20 +16,20 @@ function Chamar(iniNum, finalNum,totalNum, jogo){
 
     jogo2 = ''
     if (jogo==1) {
-        jogo2 = "/img/botao-mega-sena.png"
+        jogo2 = "img/botao-mega-sena.png"
     } else if (jogo==2){
-        jogo2 = "/img/botao-lotofacil.png"
+        jogo2 = "img/botao-lotofacil.png"
     } else if (jogo==3){
-        jogo2 = "/img/botao-quina.png"
+        jogo2 = "img/botao-quina.png"
     } else if (jogo==4){
-        jogo2 = "/img/botao-diadesorte.png"
+        jogo2 = "img/botao-diadesorte.png"
         mes = true
     } else if (jogo==5){
-        jogo2 = "/img/botao-lotomania.png"
+        jogo2 = "img/botao-lotomania.png"
     } else if (jogo==6){
-        jogo2 = "/img/botao-supersete.png"
+        jogo2 = "img/botao-supersete.png"
     } else if (jogo==7){
-        jogo2 = "/img/botao-duplasena.png"
+        jogo2 = "img/botao-duplasena.png"
     }  
     
     
