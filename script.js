@@ -52,20 +52,19 @@ function Sorteio(maiorNumeroJogo, possuiMes) {
     quantidadeNumeroPorJogo = document.getElementById('qntNum').value;
     totalJogos = document.getElementById('qntJogos').value;
     resultado = document.getElementById('resultado')
-    console.log(quantidadeNumeroPorJogo + " - "+totalJogos)
     let todosJogos = []
     let jogo;
 
     for (i=0; i < totalJogos; i++) {
         jogo = SortearJogo(quantidadeNumeroPorJogo,maiorNumeroJogo)
-        todosJogos.push(jogo)
+
         if (possuiMes == true ) {
             mes = SortearMes()
-            jogo += ` - Mês = ${mes}`
+            jogo += ` - ${mes}`
         }
+        
+        todosJogos.push(jogo)
     }
-
-    console.log(todosJogos)
 
     resultado.innerHTML = todosJogos.join("<br>")
 
@@ -89,11 +88,9 @@ function SortearJogo(quantidadeNumeroPorJogo, maiorNumeroJogo) {
 
 
 function SortearMes() {
-    var numero = numeroSorteado = Math.floor(Math.random() * (12) + 1)
+    mesSorteado = Math.floor(Math.random() * (12) + 1)
 
-    console.log(numero)
-
-    switch (numero) {
+    switch (mesSorteado) {
 
         case 1:
             return 'Janeiro'
