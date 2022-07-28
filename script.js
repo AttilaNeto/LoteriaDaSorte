@@ -1,115 +1,99 @@
-
-
-//CHAMA A TELA DO JOGO
-function Chamar(iniNum, finalNum,totalNum, jogo){
+//VAI ADICIONAR CONTEUDO NA DIV JOGO DE ACORDO COM O JOGO ESCOLHIDO
+function ChamarJogo(minimoNumeroEscolhido, maximoNumeroEscolhido, maiorNumeroJogo, idJogo) {
     LimparResultado();
-
     divjogo = document.getElementById('jogo')
 
-    opcao = ''
-    for (let i = iniNum; i <= finalNum; i++) {
-        
-        opcao = opcao + "<option value="+i+">"+i+"</option>"
+    let opcaoNumerosPorJogo;
+    let opcaoTotalJogos;
+    let linkImgJogo;
+    possuiMes = false
+
+    for (let i = minimoNumeroEscolhido; i <= maximoNumeroEscolhido; i++) {
+
+        opcaoNumerosPorJogo = opcaoNumerosPorJogo + `<option value=${i}>${i}</option>`
     }
 
-    mes = false
+    for (let j = 1; j <= 100; j++) {
+        opcaoTotalJogos = opcaoTotalJogos + `<option value=${j}>${j}</option>`
+    }
 
-    jogo2 = ''
-    if (jogo==1) {
-        jogo2 = "img/botao-mega-sena.png"
-    } else if (jogo==2){
-        jogo2 = "img/botao-lotofacil.png"
-    } else if (jogo==3){
-        jogo2 = "img/botao-quina.png"
-    } else if (jogo==4){
-        jogo2 = "img/botao-diadesorte.png"
-        mes = true
-    } else if (jogo==5){
-        jogo2 = "img/botao-lotomania.png"
-    } else if (jogo==6){
-        jogo2 = "img/botao-supersete.png"
-    } else if (jogo==7){
-        jogo2 = "img/botao-duplasena.png"
-    }  
-    
-    
-    codigo = "<img class='logoimg' src='"+jogo2+"'><br><label>Quantidade de Numeros Sorteados: </label><select id='qntNum'>"+opcao+"</select><label>Total de Jogos Sorteados: </label><input id='qntJogos' type='number' value=1><br><br><button onclick='Sorteio("+totalNum+","+mes+")'>Sortear!</button>"
+    if (idJogo == 1) {
+        linkImgJogo = "img/botao-mega-sena.png"
+    } else if (idJogo == 2) {
+        linkImgJogo = "img/botao-lotofacil.png"
+    } else if (idJogo == 3) {
+        linkImgJogo = "img/botao-quina.png"
+    } else if (idJogo == 4) {
+        linkImgJogo = "img/botao-diadesorte.png"
+        possuiMes = true
+    } else if (idJogo == 5) {
+        linkImgJogo = "img/botao-lotomania.png"
+    } else if (idJogo == 6) {
+        linkImgJogo = "img/botao-supersete.png"
+    } else if (idJogo == 7) {
+        linkImgJogo = "img/botao-duplasena.png"
+    }
+
+
+    codigo = `<img class='logoimg' src='${linkImgJogo}'>
+    <br>
+    <label>Quantidade de Numeros Sorteados: </label>
+    <select id='qntNum'>${opcaoNumerosPorJogo}</select>
+    <label>Total de Jogos Sorteados: </label>
+    <select id='qntJogos'>${opcaoTotalJogos}</select>
+    <br><br>
+    <button onclick='Sorteio(${maiorNumeroJogo},${possuiMes})'>Sortear!</button>`
 
     divjogo.innerHTML = codigo
 }
 
 //PEGA A QUANTIDADE DE NUMEROS A SEREM SORTEADOS E A QUANTIDADE DE JOGOS
-function Sorteio(totalSorteio,temMes){
-    qntNum = document.getElementById('qntNum').value;
-    qntJogos = document.getElementById('qntJogos').value;
-    
-    SortearNumeros(qntJogos, qntNum, totalSorteio,temMes)
-    AparecerResultado()
-}
-
-function ChecarNumero(a,b){
-    return (a - b)
-}
-
-function SortearNumeros(qntJogos, qntNum, numSort, temMes){
-
+function Sorteio(maiorNumeroJogo, possuiMes) {
+    quantidadeNumeroPorJogo = document.getElementById('qntNum').value;
+    totalJogos = document.getElementById('qntJogos').value;
     resultado = document.getElementById('resultado')
+    console.log(quantidadeNumeroPorJogo + " - "+totalJogos)
+    let todosJogos = []
+    let jogo;
 
-    jogosSorteados = []
-
-    // CHECAR A QUANTIDADE DE JOGOS
-    for (let index = 1; index <= qntJogos; index++) {
-
-        numerosSorteados = []
-        
-        //CHECAR A QUANTIDADE DE NUMERO SORTEADO
-        for (let i = 1; i <= qntNum; i++) {              
-
-            while (numerosSorteados.length < qntNum){
-                var numero = numeroSorteado = Math.floor(Math.random()*(numSort)+1)
-                numero = ("00" + numero).slice(-2)
-                if (numerosSorteados.indexOf(numero) == -1){
-                    numerosSorteados.push(numero)
-                }
-            }
-
-            jogo = ""
-
-            for (let j = 0; j < numerosSorteados.sort(ChecarNumero).length; j++) {
-                
-                
-                if (j==numerosSorteados.length-1) {
-                    jogo = jogo  + numerosSorteados[j]
-                } else {
-                    jogo = jogo  + numerosSorteados[j] + ' - '
-                }
-                 
-            }
-
-            if (temMes==true){
-                mes = SortearMes()
-                jogo = jogo + " - Mês: "+mes
-            }
+    for (i=0; i < totalJogos; i++) {
+        jogo = SortearJogo(quantidadeNumeroPorJogo,maiorNumeroJogo)
+        todosJogos.push(jogo)
+        if (possuiMes == true ) {
+            mes = SortearMes()
+            jogo += ` - Mês = ${mes}`
         }
-        jogosSorteados.push(jogo)
     }
 
-    codigo = ''
+    console.log(todosJogos)
 
-    for (let index = 0; index < jogosSorteados.length; index++) {
-        
-        codigo = codigo + jogosSorteados[index] + '<br>'
-    }
-    
-    resultado.innerHTML = codigo
+    resultado.innerHTML = todosJogos.join("<br>")
+
+    AparecerResultado()
+
 }
 
-function SortearMes(){
-    var numero = numeroSorteado = Math.floor(Math.random()*(12)+1)
+function SortearJogo(quantidadeNumeroPorJogo, maiorNumeroJogo) {
+    let jogo = []
+
+    while (quantidadeNumeroPorJogo > jogo.length) {
+        numeroSorteado = ("00" + Math.floor(Math.random() * maiorNumeroJogo + 1)).slice(-2)
+
+        if (jogo.indexOf(numeroSorteado) == -1) {
+            jogo.push(numeroSorteado)
+        }
+    }
+
+    return jogo.sort((A, B) => A - B).join(" - ")
+}
+
+
+function SortearMes() {
+    var numero = numeroSorteado = Math.floor(Math.random() * (12) + 1)
 
     console.log(numero)
 
-    switch (numero){
+    switch (numero) {
 
         case 1:
             return 'Janeiro'
@@ -138,13 +122,13 @@ function SortearMes(){
     }
 }
 
-function AparecerResultado(){
+function AparecerResultado() {
     let result = document.getElementById('resultado');
     result.classList.remove('resultado1');
     result.classList.add('resultado');
 }
 
-function LimparResultado(){
+function LimparResultado() {
     let result = document.getElementById('resultado');
     result.classList.remove('resultado')
     result.classList.add('resultado1')
