@@ -25,6 +25,7 @@ body{
     margin-bottom: 3%;
     flex-direction: row;
     justify-content: space-around;
+    flex-wrap: wrap;
 }
 
 #jogo{
