@@ -37,12 +37,12 @@ function ChamarJogo(minimoNumeroEscolhido, maximoNumeroEscolhido, maiorNumeroJog
 
     codigo = `<img class='logoimg' src='${linkImgJogo}'>
     <br>
-    <label>Quantidade de Numeros Sorteados: </label>
+    <label>Quantos números por jogo? </label>
     <select id='qntNum'>${opcaoNumerosPorJogo}</select>
-    <label>Total de Jogos Sorteados: </label>
+    <label>Quantos jogos você quer gerar? </label>
     <select id='qntJogos'>${opcaoTotalJogos}</select>
     <br><br>
-    <button onclick='Sorteio(${maiorNumeroJogo},${possuiMes})'>Sortear!</button>`
+    <button class="button-73" onclick='Sorteio(${maiorNumeroJogo},${possuiMes})'>Sortear!</button>`
 
     divjogo.innerHTML = codigo
 }
@@ -83,7 +83,7 @@ function SortearJogo(quantidadeNumeroPorJogo, maiorNumeroJogo) {
         }
     }
 
-    return jogo.sort((A, B) => A - B).join(" - ")
+    return jogo.sort((A, B) => A - B).join(" - ") //VAI ORDERNAR OS NUMEROS DOS JOGOS
 }
 
 
